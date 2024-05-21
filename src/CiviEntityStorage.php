@@ -416,6 +416,10 @@ class CiviEntityStorage extends SqlContentEntityStorage {
     $civicrm_entity_settings = $this->getConfigFactory()->get('civicrm_entity.settings');
     $field_definitions = $entity->getFieldDefinitions();
     foreach ($field_definitions as $definition) {
+      if ($definition->getType() == 'metatag_computed') {
+        continue;
+      }
+
       $items = $entity->get($definition->getName());
       if ($items->isEmpty()) {
         continue;
