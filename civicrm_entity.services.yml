@@ -32,3 +32,8 @@ services:
     arguments: ['@request_stack', '@civicrm_entity.api']
     tags:
       - {name: access_check, applies_to: _civicrm_entity_checksum_access_check }
+
+  civicrm_entity.search_api:
+    class: Drupal\civicrm_entity\EventSubscriber\SearchApiSubscriber
+    tags:
+      - { name: event_subscriber }
