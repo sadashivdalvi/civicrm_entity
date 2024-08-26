@@ -2,6 +2,7 @@
 
 namespace Drupal\civicrm_entity;
 
+use Civi\Core\Container;
 use Drupal\Component\Transliteration\TransliterationInterface;
 use Drupal\Core\Language\LanguageInterface;
 
@@ -909,6 +910,10 @@ final class SupportedEntities {
    */
   public static function alterEntityInfo(array &$civicrm_entity_info) {
     \Drupal::service('civicrm_entity.api')->civicrmInitialize();
+
+    if (!Container::isContainerBooted()) {
+        return FALSE;
+    }
 
     $code_version = explode('.', \CRM_Utils_System::version());
     if (version_compare($code_version[0] . '.' . $code_version[1], 4.5) >= 0) {
