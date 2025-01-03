@@ -474,7 +474,7 @@ function civicrm_entity_civicrm_pre($op, $objectName, $id, &$params) {
   }
 
   $enabled_components = \Drupal::config('civicrm_entity.settings')->get('enabled_entity_types');
-  if (!in_array($entityType, $enabled_components)) {
+  if (empty($enabled_components) || !in_array($entityType, $enabled_components)) {
     return;
   }
 
@@ -551,7 +551,7 @@ function civicrm_entity_civicrm_post($op, $objectName, $objectId, &$objectRef) {
   }
 
   $enabled_components = \Drupal::config('civicrm_entity.settings')->get('enabled_entity_types');
-  if (!in_array($entityType, $enabled_components)) {
+  if (empty($enabled_components) || !in_array($entityType, $enabled_components)) {
     return;
   }
 
